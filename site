@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>קורס מורים ליוגה ברוח הויג'נאנה | אלונה כהן — סטודיו ליוגה, קיבוץ עברון</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Suez+One&family=Heebo:wght@300;400;500;700&family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FAF6EE;
+    --sand:#F0E7D8;
+    --sand-deep:#E5D8C3;
+    --ink:#3B2F24;
+    --brown:#7A5C40;
+    --camel:#A9835C;
+    --honey:#C89B62;
+    --white:#FFFDF8;
+    --display:'Suez One', serif;
+    --body:'Heebo', sans-serif;
+    --hand:'Amatic SC', cursive;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--body);font-weight:300;
+    background:var(--cream);color:var(--ink);
+    line-height:1.75;font-size:17.5px;
+    overflow-x:hidden;-webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.2;letter-spacing:.005em}
+  strong{font-weight:500}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 26px}
+  .hand{font-family:var(--hand);font-size:1.9rem;color:var(--camel);letter-spacing:.04em}
+
+  /* ---------- Nav ---------- */
+  nav{position:fixed;inset-inline:0;top:0;z-index:60;transition:background .3s, box-shadow .3s}
+  nav.scrolled{background:rgba(250,246,238,.92);backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(59,47,36,.07)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:76px}
+  .logo{font-family:var(--display);font-size:1.2rem}
+  .logo small{display:block;font-family:var(--body);font-weight:400;font-size:.72rem;letter-spacing:.22em;color:var(--camel);margin-top:-4px}
+  .nav-links{display:flex;gap:30px;align-items:center;font-weight:400;font-size:.96rem}
+  .nav-links>a:not(.btn){position:relative}
+  .nav-links>a:not(.btn)::after{content:"";position:absolute;bottom:-5px;right:0;width:0;height:2px;background:var(--honey);transition:width .3s}
+  .nav-links>a:not(.btn):hover::after{width:100%}
+  .btn{
+    display:inline-block;background:var(--ink);color:var(--cream);
+    padding:14px 32px;border-radius:100px;font-weight:500;font-size:1rem;
+    border:none;cursor:pointer;font-family:var(--body);
+    transition:transform .3s cubic-bezier(.34,1.56,.64,1), background .3s, box-shadow .3s;
+  }
+  .btn:hover{transform:translateY(-3px) scale(1.02);background:var(--brown);box-shadow:0 14px 28px -12px rgba(59,47,36,.45)}
+  .btn.light{background:var(--cream);color:var(--ink)}
+  .btn.light:hover{background:#fff}
+  .nav-links .btn{padding:10px 24px;font-size:.92rem}
+
+  /* ---------- Hero ---------- */
+  header{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:120px 0 0;position:relative}
+  .hero{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+  .hero-copy .hand{display:inline-block;transform:rotate(-2deg);margin-bottom:10px}
+  .hero h1{font-size:clamp(2.6rem,6vw,4.4rem);margin-bottom:18px}
+  .hero h1 .accent{position:relative;display:inline-block;color:var(--brown)}
+  .hero h1 .accent svg{position:absolute;right:0;left:0;bottom:-10px;width:100%;height:16px;overflow:visible}
+  .hero h1 .accent path{stroke:var(--honey);stroke-width:5;fill:none;stroke-linecap:round;
+    stroke-dasharray:400;stroke-dashoffset:400;animation:draw 1.1s .9s ease forwards}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  .hero p.lead{font-size:1.15rem;max-width:31rem;margin-bottom:34px;color:#5b4c3d}
+  .hero-cta{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+  .hero-cta .more{font-weight:500;color:var(--brown);display:inline-flex;align-items:center;gap:8px}
+  .hero-cta .more span{transition:transform .3s}
+  .hero-cta .more:hover span{transform:translateX(-5px)}
+
+  .hero-photo{position:relative;justify-self:center}
+  .blob{
+    width:min(400px,82vw);aspect-ratio:1/1.16;overflow:hidden;position:relative;z-index:2;
+    border-radius:58% 42% 55% 45% / 52% 48% 52% 48%;
+    animation:morph 14s ease-in-out infinite;
+    box-shadow:0 40px 70px -30px rgba(59,47,36,.4);
+  }
+  .blob img{width:100%;height:100%;object-fit:cover;transform:scale(1.05)}
+  .blob-shadow{
+    position:absolute;inset:22px -22px -22px 22px;z-index:1;background:var(--sand-deep);
+    border-radius:42% 58% 45% 55% / 48% 52% 48% 52%;
+    animation:morph 14s ease-in-out infinite reverse;
+  }
+  @keyframes morph{
+    0%,100%{border-radius:58% 42% 55% 45% / 52% 48% 52% 48%}
+    33%{border-radius:46% 54% 48% 52% / 58% 44% 56% 42%}
+    66%{border-radius:54% 46% 60% 40% / 45% 55% 45% 55%}
+  }
+  .float-note{
+    position:absolute;z-index:3;background:var(--white);border-radius:16px;
+    padding:12px 20px;box-shadow:0 16px 34px -16px rgba(59,47,36,.35);
+    font-size:.9rem;font-weight:500;
+    animation:float 5s ease-in-out infinite;
+  }
+  .float-note b{display:block;font-family:var(--display);font-weight:400;font-size:1.15rem;color:var(--brown)}
+  .fn1{top:8%;right:-8%}
+  .fn2{bottom:10%;left:-6%;animation-delay:2.2s}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+
+  /* Marquee */
+  .marquee{background:var(--ink);color:var(--cream);padding:16px 0;overflow:hidden;margin-top:64px}
+  .marquee-track{display:flex;gap:0;width:max-content;animation:scroll 30s linear infinite}
+  .marquee span{display:inline-flex;align-items:center;gap:22px;padding-inline-start:22px;font-size:1rem;font-weight:400;letter-spacing:.03em;white-space:nowrap}
+  .marquee i{font-style:normal;color:var(--honey)}
+  @keyframes scroll{to{transform:translateX(50%)}}
+
+  /* ---------- Sections ---------- */
+  section{padding:110px 0}
+  h2{font-size:clamp(2rem,4.4vw,3rem);margin-bottom:20px}
+  .kicker-hand{display:inline-block;transform:rotate(-1.5deg);margin-bottom:6px}
+
+  /* Statement (YWA style) */
+  .statement{text-align:center;padding:130px 0}
+  .statement h2{font-size:clamp(2.2rem,5.5vw,3.8rem);max-width:17ch;margin:0 auto 26px}
+  .statement h2 em{font-style:normal;color:var(--camel)}
+  .statement p{max-width:38rem;margin:0 auto;font-size:1.12rem;color:#5b4c3d}
+
+  /* Years */
+  .years{background:var(--sand);border-radius:48px 48px 0 0}
+  .years-head{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:60px;flex-wrap:wrap}
+  .years-head p{max-width:26rem;color:#5b4c3d}
+  .year-row{
+    display:grid;grid-template-columns:auto 1fr 1.2fr;gap:44px;align-items:start;
+    padding:52px 0;border-top:1.5px solid rgba(59,47,36,.14);
+  }
+  .year-num{font-family:var(--display);font-size:clamp(3.4rem,7vw,5.2rem);line-height:.9;color:var(--camel);opacity:.55}
+  .year-row h3{font-size:1.75rem;margin-bottom:12px}
+  .year-row .desc{color:#5b4c3d;max-width:24rem}
+  .chips{display:flex;flex-wrap:wrap;gap:10px}
+  .chip{
+    background:var(--white);border-radius:100px;padding:9px 20px;font-size:.92rem;font-weight:400;
+    box-shadow:0 4px 12px -6px rgba(59,47,36,.18);
+    transition:transform .3s, background .3s, color .3s;
+  }
+  .chip:hover{transform:translateY(-3px) rotate(-1deg);background:var(--ink);color:var(--cream)}
+
+  /* Outcomes */
+  .outcomes .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0 60px;max-width:960px;margin-top:8px}
+  .out{
+    display:flex;gap:18px;align-items:baseline;padding:22px 0;
+    border-bottom:1.5px solid rgba(59,47,36,.12);
+  }
+  .out .mark{font-family:var(--hand);font-size:1.7rem;color:var(--honey);flex-shrink:0}
+  .out p{font-size:1.05rem}
+  .outcomes .hand-note{margin-top:36px;transform:rotate(-1deg);display:inline-block}
+
+  /* Photo split rows */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-bottom:110px}
+  .split:last-child{margin-bottom:0}
+  .split.flip .media{order:2}
+  .split .media{position:relative}
+  .split .media img{
+    border-radius:38% 62% 55% 45% / 50% 44% 56% 50%;
+    aspect-ratio:1/1.05;object-fit:cover;width:min(430px,100%);
+  }
+  .split .media::after{
+    content:attr(data-note);font-family:var(--hand);font-size:1.8rem;color:var(--camel);
+    position:absolute;bottom:-14px;right:8%;transform:rotate(-3deg);
+  }
+  .split h2{font-size:clamp(1.9rem,3.6vw,2.5rem)}
+  .split p{color:#5b4c3d;margin-bottom:14px}
+
+  /* Retreat band */
+  .retreat{
+    position:relative;color:var(--cream);text-align:center;
+    background:linear-gradient(rgba(43,33,24,.55),rgba(43,33,24,.65)),
+      url('https://static.wixstatic.com/media/5c121c_053194d7b42a442bb50c8818e5caf970~mv2.png/v1/fill/w_1400,h_800,al_c,q_85/retreat.png') center/cover;
+    background-attachment:fixed;
+    padding:150px 0;
+  }
+  .retreat h2{color:var(--cream);font-size:clamp(2.2rem,5vw,3.4rem)}
+  .retreat p{max-width:36rem;margin:0 auto 8px;font-size:1.12rem}
+  .retreat small{display:block;margin-top:20px;opacity:.75;font-size:.92rem}
+  .retreat .hand{color:var(--honey)}
+
+  /* Pricing */
+  .pricing{background:var(--sand)}
+  .price-flex{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+  .price-big{font-family:var(--display);font-size:clamp(3.8rem,8vw,6rem);line-height:1;color:var(--brown)}
+  .price-big small{font-size:1.4rem;color:var(--ink)}
+  .price-old{font-size:1.3rem;color:#9a8873;text-decoration:line-through;margin-bottom:4px}
+  .early-tag{
+    display:inline-block;background:var(--ink);color:var(--honey);font-weight:500;
+    padding:8px 22px;border-radius:100px;font-size:.95rem;margin:16px 0 8px;
+    transform:rotate(-1.5deg);
+  }
+  .perk{display:flex;gap:16px;align-items:baseline;padding:16px 0;border-bottom:1.5px solid rgba(59,47,36,.14)}
+  .perk .mark{font-family:var(--hand);font-size:1.6rem;color:var(--brown)}
+  .price-fine{font-size:.85rem;color:#7d6b57;margin-top:22px}
+  .pricing .btn{margin-top:30px}
+
+  /* Alona */
+  .alona{overflow:hidden}
+  .alona-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:80px;align-items:center}
+  .alona-photo{position:relative}
+  .alona-photo img{
+    border-radius:50% 50% 46% 54% / 60% 56% 44% 40%;
+    aspect-ratio:1;object-fit:cover;width:min(420px,100%);
+  }
+  .alona-photo .hand{position:absolute;bottom:-8px;right:12%;transform:rotate(-4deg);font-size:2.1rem}
+  .alona-copy p{color:#5b4c3d;margin-bottom:16px}
+  .bigquote{
+    font-family:var(--display);font-size:1.45rem;line-height:1.5;color:var(--brown);
+    margin:26px 0;position:relative;padding-right:26px;
+  }
+  .bigquote::before{content:"״";position:absolute;right:-4px;top:-8px;font-size:2.6rem;color:var(--honey)}
+
+  .team{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:100px}
+  .member{display:flex;gap:26px;align-items:flex-start}
+  .member img{width:130px;height:130px;object-fit:cover;border-radius:46% 54% 52% 48% / 54% 46% 54% 46%;flex-shrink:0}
+  .member h3{font-size:1.35rem;margin-bottom:8px}
+  .member p{font-size:.95rem;color:#5b4c3d}
+  .member .role{font-family:var(--hand);font-size:1.5rem;color:var(--camel);display:block;margin-bottom:2px}
+
+  /* FAQ */
+  .faq details{border-bottom:1.5px solid rgba(59,47,36,.14)}
+  .faq summary{
+    cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:20px;
+    font-family:var(--display);font-size:1.25rem;padding:26px 0;transition:color .3s;
+  }
+  .faq summary:hover{color:var(--brown)}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{
+    content:"+";font-family:var(--body);font-weight:300;font-size:1.9rem;color:var(--honey);
+    transition:transform .35s cubic-bezier(.34,1.56,.64,1);line-height:1;
+  }
+  .faq details[open] summary::after{transform:rotate(135deg)}
+  .faq details p{padding:0 0 26px;color:#5b4c3d;max-width:46rem}
+
+  /* Contact */
+  .contact{background:var(--ink);color:var(--cream);border-radius:48px 48px 0 0}
+  .contact h2{color:var(--cream)}
+  .contact .hand{color:var(--honey)}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+  .contact p.intro{opacity:.8;max-width:26rem}
+  .wa{
+    display:flex;align-items:center;gap:16px;margin-top:22px;padding:20px 24px;
+    background:rgba(250,246,238,.06);border:1px solid rgba(250,246,238,.16);border-radius:18px;
+    transition:transform .3s, background .3s;
+  }
+  .wa:hover{transform:translateY(-3px);background:rgba(250,246,238,.12)}
+  .wa b{display:block;font-weight:500}
+  .wa span{font-size:.88rem;opacity:.65}
+  .form{background:var(--cream);color:var(--ink);border-radius:24px;padding:44px 40px}
+  .form h3{font-family:var(--display);font-size:1.4rem;margin-bottom:4px}
+  .form>p{font-size:.93rem;color:#7d6b57;margin-bottom:24px}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-weight:500;font-size:.88rem;margin-bottom:6px}
+  .field input{
+    width:100%;padding:14px 18px;border-radius:14px;border:1.5px solid rgba(59,47,36,.18);
+    font-family:var(--body);font-size:1rem;background:#fff;transition:border-color .3s, box-shadow .3s;
+  }
+  .field input:focus{outline:none;border-color:var(--brown);box-shadow:0 0 0 4px rgba(169,131,92,.18)}
+  .form .btn{width:100%;margin-top:8px}
+  .form-ok{display:none;text-align:center;padding:36px 0;font-weight:500}
+  .form-ok .hand{display:block;font-size:2.2rem;color:var(--brown)}
+
+  footer{background:var(--ink);color:rgba(250,246,238,.55);padding:34px 0;font-size:.88rem;border-top:1px solid rgba(250,246,238,.1)}
+  .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;align-items:center}
+  .foot .hand{font-size:1.6rem;color:var(--honey)}
+
+  /* Reveal */
+  .rv{opacity:0;transform:translateY(34px);transition:opacity .8s ease, transform .8s ease}
+  .rv.in{opacity:1;transform:none}
+  .rv.d1{transition-delay:.12s}.rv.d2{transition-delay:.24s}.rv.d3{transition-delay:.36s}
+
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    .rv{opacity:1;transform:none}
+    .retreat{background-attachment:scroll}
+  }
+
+  /* ---------- Mobile ---------- */
+  @media(max-width:940px){
+    section{padding:80px 0}
+    .hero,.split,.price-flex,.alona-grid,.contact-grid,.team{grid-template-columns:1fr;gap:52px}
+    .hero-photo{order:-1}
+    .split.flip .media{order:0}
+    .year-row{grid-template-columns:1fr;gap:18px;padding:40px 0}
+    .outcomes .grid{grid-template-columns:1fr}
+    .nav-links>a:not(.btn){display:none}
+    .fn1{right:-2%}.fn2{left:-2%}
+    header{padding-top:100px;min-height:auto}
+    .marquee{margin-top:52px}
+    .retreat{background-attachment:scroll;padding:110px 0}
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wrap nav-inner">
+    <div class="logo">אלונה כהן<small>סטודיו ליוגה · עברון</small></div>
+    <div class="nav-links">
+      <a href="#path">המסלול</a>
+      <a href="#about">מי מלמדת</a>
+      <a href="#faq">שאלות</a>
+      <a href="#contact" class="btn">לשיחת היכרות</a>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap hero">
+    <div class="hero-copy">
+      <span class="hand rv in">הכשרה דו־שנתית · 500 שעות</span>
+      <h1 class="rv in">קורס מורים ליוגה<br>ברוח <span class="accent">הויג'נאנה<svg viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M4 10 Q 50 2 100 8 T 196 6"/></svg></span></h1>
+      <p class="lead rv in d1">היוגה היא הרבה מעבר לתרגול על המזרן — היא דרך חיים. תהליך עומק של שנתיים, שבו לומדים קודם כל להיות, ורק אחר כך גם ללמד.</p>
+      <div class="hero-cta rv in d2">
+        <a href="#contact" class="btn">לקבלת סילבוס ושיחת היכרות</a>
+        <a href="#path" class="more">מה לומדים <span>←</span></a>
+      </div>
+    </div>
+    <div class="hero-photo rv in d1">
+      <div class="float-note fn1"><b>10</b>משתתפים בלבד</div>
+      <div class="float-note fn2"><b>28.10.26</b>פתיחת המחזור הראשון</div>
+      <div class="blob-shadow"></div>
+      <div class="blob">
+        <img src="https://static.wixstatic.com/media/5c121c_dca564ad04ec4954a7dcb1ada3c954e6~mv2.png/v1/crop/x_500,y_158,w_744,h_744/fill/w_744,h_744,al_c,q_85/hero.png" alt="אלונה כהן">
+      </div>
+    </div>
+  </div>
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>פתיחה 28.10.26 <i>✦</i> ימי רביעי 9:00–15:00 <i>✦</i> קיבוץ עברון <i>✦</i> 500 שעות לימוד <i>✦</i> עד 10 משתתפים <i>✦</i> מוכר ע"י ארגון מורי היוגה בישראל <i>✦</i></span>
+      <span>פתיחה 28.10.26 <i>✦</i> ימי רביעי 9:00–15:00 <i>✦</i> קיבוץ עברון <i>✦</i> 500 שעות לימוד <i>✦</i> עד 10 משתתפים <i>✦</i> מוכר ע"י ארגון מורי היוגה בישראל <i>✦</i></span>
+    </div>
+  </div>
+</header>
+
+<section class="statement">
+  <div class="wrap">
+    <span class="hand kicker-hand rv">האני מאמין שלנו</span>
+    <h2 class="rv">קודם <em>לומדים</em>.<br>אחר כך <em>מלמדים</em>.</h2>
+    <p class="rv d1">אפשר ללמוד איך לבנות שיעור, ללמוד אנטומיה, ללמוד להסביר תנוחה. כל אלו חשובים — אבל הוראה טובה מתחילה הרבה לפני. לפני שמלמדים יוגה, צריך להכיר את הדרך מבפנים וללכת בה בהתמסרות ואהבה. לכן השנה הראשונה מוקדשת כולה להעמקה אישית, ורק מתוך בסיס יציב של תרגול והבנה — נפתח עולם ההוראה.</p>
+  </div>
+</section>
+
+<section class="years" id="path">
+  <div class="wrap">
+    <div class="years-head">
+      <div class="rv">
+        <span class="hand kicker-hand">המסע שלנו</span>
+        <h2>שנתיים, שני שלבים</h2>
+      </div>
+      <p class="rv d1">ללמוד מתוך חוויה אישית — ללמוד מבפנים. בכל שנה: 31 מפגשים, מרצים אורחים וריטריט של שלושה ימים.</p>
+    </div>
+
+    <div class="year-row rv">
+      <div class="year-num">01</div>
+      <div>
+        <h3>העמקה בדרך היוגה</h3>
+        <p class="desc">נלמד להקשיב לגוף, להתבונן בנשימה, להכיר את דפוסי התודעה ולפגוש את עקרונות היוגה גם בחיי היומיום — לא רק על המזרן.</p>
+      </div>
+      <div class="chips">
+        <span class="chip">אסאנה</span><span class="chip">פראניאמה</span><span class="chip">מדיטציה</span>
+        <span class="chip">פילוסופיה של היוגה</span><span class="chip">יוגה סוטרה לפטנג'לי</span>
+        <span class="chip">האתה יוגה פרדיפיקה</span><span class="chip">שבעת עקרונות הויג'נאנה</span>
+        <span class="chip">אנטומיה ופיזיולוגיה</span><span class="chip">גוף–נפש</span><span class="chip">תרגול אישי</span>
+      </div>
+    </div>
+
+    <div class="year-row rv">
+      <div class="year-num">02</div>
+      <div>
+        <h3>מהעמקה להוראה</h3>
+        <p class="desc">רק כשהתרגול מתבסס בנו והופך לחלק מאיתנו, יכולה לצמוח ממנו הוראה שיש בה בהירות, יציבות ואותנטיות.</p>
+      </div>
+      <div class="chips">
+        <span class="chip">בניית שיעורים</span><span class="chip">הנחיה והחזקת מרחב</span>
+        <span class="chip">דיוק בהוראה</span><span class="chip">התאמת תרגול לתלמידים שונים</span>
+        <span class="chip">התנסות מעשית</span><span class="chip">פיתוח קול אישי כמורה</span>
+        <span class="chip">בהגווד גיטה</span><span class="chip">אופנישאדות</span><span class="chip">פמה צ'ודרון</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="outcomes">
+  <div class="wrap">
+    <span class="hand kicker-hand rv">בסיום הדרך</span>
+    <h2 class="rv">עם מה יוצאים מכאן?</h2>
+    <div class="grid">
+      <div class="out rv"><span class="mark">✓</span><p>תעודת הוראה מוכרת ע"י ארגון מורי היוגה בישראל</p></div>
+      <div class="out rv"><span class="mark">✓</span><p>תרגול עצמאי ומבוסס בבית</p></div>
+      <div class="out rv d1"><span class="mark">✓</span><p>הבנה מעמיקה של גוף, נשימה ותודעה</p></div>
+      <div class="out rv d1"><span class="mark">✓</span><p>יכולת לבנות ולהעביר שיעורים — מיד בסיום הקורס</p></div>
+      <div class="out rv d2"><span class="mark">✓</span><p>ביטחון בהנחיית תלמידים ברמות שונות</p></div>
+      <div class="out rv d2"><span class="mark">✓</span><p>הוראת אוכלוסיות מגוונות: הגיל השלישי, פציעות נפוצות, עבודה פרטנית</p></div>
+      <div class="out rv d3"><span class="mark">✓</span><p>כלים להמשך התפתחות אישית ומקצועית</p></div>
+      <div class="out rv d3"><span class="mark">✓</span><p>קהילה מקצועית ותומכת להמשך הדרך</p></div>
+    </div>
+    <span class="hand hand-note rv">וגם — חברים לדרך :)</span>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="split">
+      <div class="media rv" data-note="עד 10 משתתפים">
+        <img src="https://static.wixstatic.com/media/5c121c_623bfe373aef4259a6914d991eff2087~mv2.png/v1/fill/w_800,h_820,al_c,q_85/img1.png" alt="קבוצה אינטימית">
+      </div>
+      <div class="rv d1">
+        <span class="hand kicker-hand">ממורה לתלמיד</span>
+        <h2>ללמוד כפי שיוגה נלמדה מאז ומתמיד</h2>
+        <p>במשך דורות עברה היוגה ממורה לתלמיד — בקצב אישי, מתוך קשר, מתוך תרגול ומתוך ליווי לאורך זמן. גם היום, בקבוצה קטנה, אפשר לשמר משהו מהרוח הזו.</p>
+        <p>הלימוד מתקיים בקבוצה אינטימית עם ליווי אישי של צוות הקורס: מקום לשאלות, חזרה על החומר, ותהליך שמתפתח לאורך שנתיים.</p>
+      </div>
+    </div>
+    <div class="split flip">
+      <div class="media rv" data-note="קהילה לומדת">
+        <img src="https://static.wixstatic.com/media/5c121c_5e4f65730cd14723896082d96feb0ca5~mv2.png/v1/fill/w_800,h_820,al_c,q_85/img2.png" alt="קהילה">
+      </div>
+      <div class="rv d1">
+        <span class="hand kicker-hand">הדרך המשותפת</span>
+        <h2>לצמוח בתוך קהילה</h2>
+        <p>כשאנשים נפגשים לאורך זמן סביב תרגול, למידה וחקירה, נוצרת קבוצה שיש בה אמון, פתיחות ותמיכה. הלמידה מתרחשת גם דרך ההקשבה, השיח והמפגש עם האחר.</p>
+        <p>לא פעם הקשרים שנוצרים בהכשרה ממשיכים ללוות את המשתתפים גם שנים אחרי סיומה.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="retreat">
+  <div class="wrap">
+    <span class="hand rv">פעם בשנה, שלושה ימים</span>
+    <h2 class="rv">ריטריט</h2>
+    <p class="rv d1">הזדמנות לצאת מהשגרה, להעמיק בתרגול ובלמידה, ולהתחבר — לעצמנו ולקהילה שנבנית לאורך המסלול. התרגול הרציף והשהות המשותפת מאפשרים לקחת את הלמידה צעד נוסף קדימה.</p>
+    <small class="rv d2">הריטריט אינו כלול בעלות הקורס · כ-1,000–2,000 ₪ · פרטים לאחר פתיחת הקורס</small>
+  </div>
+</section>
+
+<section class="pricing" id="price">
+  <div class="wrap price-flex">
+    <div class="rv">
+      <span class="hand kicker-hand">הרשמה למחזור הראשון</span>
+      <h2>עלות הקורס</h2>
+      <div class="price-old">11,500 ₪ לשנת לימודים</div>
+      <div class="price-big">10,500 <small>₪ / שנה</small></div>
+      <div class="early-tag">בהרשמה מוקדמת עד 1.9</div>
+      <p class="price-fine">המחיר לשנת לימודים אחת מתוך השנתיים · דמי הרשמה 500 ₪ (אינם ניתנים להשבה)</p>
+    </div>
+    <div class="rv d1">
+      <div class="perk"><span class="mark">✓</span><p><strong>מתנה לנרשמים:</strong> מנוי לתרגול יוגה שבועי בסטודיו למשך 7 חודשי הלימודים — הטבה בשווי 300 ₪ לחודש</p></div>
+      <div class="perk"><span class="mark">✓</span><p>תעודה מוכרת ע"י ארגון מורי היוגה בישראל</p></div>
+      <div class="perk"><span class="mark">✓</span><p>קבוצה מצומצמת — 10 מקומות בלבד</p></div>
+      <a href="#contact" class="btn">אני רוצה להירשם</a>
+    </div>
+  </div>
+</section>
+
+<section class="alona" id="about">
+  <div class="wrap">
+    <div class="alona-grid">
+      <div class="alona-photo rv">
+        <img src="https://static.wixstatic.com/media/5c121c_27f9dc6f339b43239ebd682cc77e7fbf~mv2.png/v1/fill/w_800,h_800,al_c,q_85/alona.png" alt="אלונה כהן">
+        <span class="hand">מורה ליוגה מ-2007</span>
+      </div>
+      <div class="alona-copy rv d1">
+        <span class="hand kicker-hand">בהנחיית</span>
+        <h2>נעים להכיר, אני אלונה</h2>
+        <p>אני מורה ליוגה משנת 2007. בשנת 2008 פתחתי את הסטודיו בקיבוץ עברון, ומאז אני מלווה מתרגלים ומתרגלות בקבוצות, נשים בהריון, יוגה תרפיה ותהליכי התפתחות אישיים. לצד היוגה למדתי טיפול בשיטת אלבאום ותזונה בגישת הבריאות הטבעית, ותרגול הוויפאסנה הפך לחלק משמעותי מחיי.</p>
+        <div class="bigquote">ההכשרה הזו נולדה מתוך שני עשורים של הוראה, למידה והתבוננות — מסלול שבו קודם כול לומדים את הדרך, ורק מתוכה לומדים גם כיצד ללמד אותה.</div>
+        <p>אני לא פעילה ברשתות החברתיות, מתוך בחירה. חשוב לי להכיר אנשים באופן אישי — מוזמנים להגיע לסטודיו, לשוחח ולהרגיש את המקום לפני שמקבלים החלטה.</p>
+      </div>
+    </div>
+
+    <div class="team">
+      <div class="member rv">
+        <img src="https://static.wixstatic.com/media/5c121c_d19a4e02b50a43ad8ddf1b752d0f08fb~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80/hila.jpg" alt="הילה שוורץ נוה">
+        <div>
+          <span class="role">מלווה את הדרך</span>
+          <h3>הילה שוורץ נוה</h3>
+          <p>מתרגלת יוגה כ-12 שנים. למדה הוראה במיקוד ראג'ה יוגה ב"צליל הפנימי" והעמיקה שנתיים בהוראה ברוח הויג'נאנה ב"נאיה יוגה". מלמדת בשלוש השנים האחרונות, ותלווה את המשתתפים מתוך הקשבה והתבוננות.</p>
+        </div>
+      </div>
+      <div class="member rv d1">
+        <img src="https://static.wixstatic.com/media/5c121c_294516b6b52440beb8c37acb345685be~mv2.jpg/v1/fill/w_400,h_400,al_c,q_80/noga.jpg" alt="נגה בן גיגי">
+        <div>
+          <span class="role">מלווה את הדרך</span>
+          <h3>נגה בן גיגי</h3>
+          <p>מורה בכירה לוויג'ננה יוגה, מאמנת כושר ומורה לפילאטיס מנהריה. חיה ונושמת יוגה מעל עשור, ומלווה אנשים בגיל השלישי ובעלי מוגבלויות בחזרה לתנועה ולחיזוק הגוף.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="wrap">
+    <span class="hand kicker-hand rv">יש שאלות? יש תשובות</span>
+    <h2 class="rv">שאלות נפוצות</h2>
+    <div class="rv d1">
+      <details>
+        <summary>מה אורך ההכשרה?</summary>
+        <p>שנתיים אקדמיות. בכל שנה 31 שיעורים + ריטריט של 3 ימים (שאינו כלול בעלות). מתחילים ב-28.10.26.</p>
+      </details>
+      <details>
+        <summary>מי ינחה את הקורס?</summary>
+        <p>אלונה כהן — בעלת הסטודיו ומורה ליוגה כבר 20 שנה, יחד עם הילה ונגה שילוו את המשתתפים לאורך הדרך. בנוסף יגיעו מיטב המרצים האורחים מהתחומים הרלוונטיים.</p>
+      </details>
+      <details>
+        <summary>איזה ניסיון נדרש כדי להירשם?</summary>
+        <p>ניסיון של לפחות שנתיים בתרגול יוגה, ראיון קבלה, ורצון להעמיק בדרך היוגה כדרך חיים.</p>
+      </details>
+      <details>
+        <summary>האם הקורס מתאים רק למי שרוצה ללמד?</summary>
+        <p>לא. הקורס מתאים גם למי שרוצה להעמיק בדרך ולעבור תהליך של היכרות עצמית והתפתחות — גם ללא כוונה ללמד.</p>
+      </details>
+      <details>
+        <summary>האם מקבלים תעודה בסיום?</summary>
+        <p>כן — תעודת מורה מוסמך ליוגה, מוכרת על ידי ארגון מורי היוגה בישראל.</p>
+      </details>
+      <details>
+        <summary>מה קורה אם המצב הביטחוני מתחמם?</summary>
+        <p>נקווה שלא נצטרך, אבל יש מיגונית צמודה לסטודיו ממש בכניסה, ובנוסף מקלט מעבר לכביש :)</p>
+      </details>
+      <details>
+        <summary>מה מדיניות הביטולים?</summary>
+        <p>ביטול עד 60 יום לפני הפתיחה — החזר מלא בניכוי דמי הרשמה וטיפול (500 ₪). ביטול ב-60 הימים שלפני הפתיחה — ללא החזר, אלא אם יימצא משתתף חלופי. לאחר המפגש הראשון ההרשמה סופית. במקרים חריגים (מצב רפואי, מילואים ממושך) תיבחן העברה למחזור הבא. בביטול ביוזמת הנהלת הקורס — יוחזרו כל הסכומים.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap contact-grid">
+    <div class="rv">
+      <span class="hand kicker-hand">מדברים לפני שמחליטים</span>
+      <h2>נשמח להכיר</h2>
+      <p class="intro">השאירו פרטים ונחזור אליכם עם סילבוס מלא — או פשוט שלחו לנו הודעה בוואטסאפ.</p>
+      <a class="wa" href="https://api.whatsapp.com/send?phone=972544544736&text=היי+נגה,+לגבי+קורס+המורים+ליוגה...">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="#C89B62"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.9-1.4A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.2 1.1-1.7 1.2-.4.1-1 .1-1.6-.1-2.7-.9-4.5-3-5.6-5-.6-1-.9-2-.6-2.7.2-.5.8-1.3 1.2-1.3h.6c.2 0 .4 0 .6.5l.8 2c.1.2 0 .4-.1.6l-.5.6c-.1.2-.2.3-.1.5.5 1 1.6 2.1 2.9 2.7.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.6-.1l1.9.9c.3.1.5.2.5.4 0 0 .1.3-.1.7z"/></svg>
+        <div><b>שליחת הודעה לנגה</b><span dir="ltr">054-454-4736</span></div>
+      </a>
+      <a class="wa" href="https://api.whatsapp.com/send?phone=972524281118&text=היי+הילה,+לגבי+קורס+המורים+ליוגה...">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="#C89B62"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.9-1.4A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.2 1.1-1.7 1.2-.4.1-1 .1-1.6-.1-2.7-.9-4.5-3-5.6-5-.6-1-.9-2-.6-2.7.2-.5.8-1.3 1.2-1.3h.6c.2 0 .4 0 .6.5l.8 2c.1.2 0 .4-.1.6l-.5.6c-.1.2-.2.3-.1.5.5 1 1.6 2.1 2.9 2.7.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.6-.1l1.9.9c.3.1.5.2.5.4 0 0 .1.3-.1.7z"/></svg>
+        <div><b>שליחת הודעה להילה</b><span dir="ltr">052-428-1118</span></div>
+      </a>
+    </div>
+    <div class="form rv d1">
+      <h3>לקבלת סילבוס ושיחת היכרות</h3>
+      <p>נחזור אליכם בהקדם עם כל הפרטים</p>
+      <div id="formFields">
+        <div class="field"><label for="fname">שם מלא *</label><input id="fname" type="text" placeholder="השם שלך"></div>
+        <div class="field"><label for="fphone">טלפון לחזרה *</label><input id="fphone" type="tel" placeholder="050-0000000"></div>
+        <div class="field"><label for="fmail">אימייל לשליחת הסילבוס</label><input id="fmail" type="email" placeholder="name@email.com"></div>
+        <button class="btn" onclick="sendForm()">שליחה</button>
+      </div>
+      <div class="form-ok" id="formOk"><span class="hand">תודה!</span>נחזור אליך בהקדם 🙏</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div>© סטודיו ליוגה, קיבוץ עברון · אלונה כהן</div>
+    <div class="hand">מחכות ללוות אתכם — אלונה, הילה ונגה</div>
+  </div>
+</footer>
+
+<script>
+  // Nav on scroll
+  const nav=document.getElementById('nav');
+  addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>30),{passive:true});
+
+  // Reveal
+  const io=new IntersectionObserver(es=>{
+    es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:.12});
+  document.querySelectorAll('.rv:not(.in)').forEach(el=>io.observe(el));
+
+  // Demo form
+  function sendForm(){
+    const n=document.getElementById('fname').value.trim();
+    const p=document.getElementById('fphone').value.trim();
+    if(!n||!p){alert('נשמח לשם וטלפון כדי שנוכל לחזור אליך :)');return;}
+    document.getElementById('formFields').style.display='none';
+    document.getElementById('formOk').style.display='block';
+  }
+</script>
+
+</body>
+</html>
